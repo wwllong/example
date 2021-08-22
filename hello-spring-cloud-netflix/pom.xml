@@ -11,6 +11,7 @@
     <modules>
         <module>hello-spring-cloud-netflix-dependencies</module>
         <module>hello-spring-cloud-netflix-eureka</module>
+        <module>hello-spring-cloud-netflix-provider</module>
     </modules>
 
 </project>
