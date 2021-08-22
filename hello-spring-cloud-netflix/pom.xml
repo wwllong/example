@@ -10,6 +10,7 @@
 
     <modules>
         <module>hello-spring-cloud-netflix-dependencies</module>
+        <module>hello-spring-cloud-netflix-eureka</module>
     </modules>
 
 </project>
