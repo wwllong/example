@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: hello-spring-boot
+  thymeleaf:
+    cache: false # 开发时关闭缓存,不然没法看到实时页面
+    mode: HTML # 用非严格的 HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.0.104:3306/myshop?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    hikari:
+      # 是客户端等待连接池连接的最大毫秒数
+      connection-timeout: 30000
+      # 是允许连接在连接池中空闲的最长时间
+      minimum-idle: 10
+      # 配置最大池大小
+      maximum-pool-size: 65
+      # 是允许连接在连接池中空闲的最长时间（以毫秒为单位）
+      idle-timeout: 60000
+      # 池中连接关闭后的最长生命周期（以毫秒为单位）
+      max-lifetime: 600000
+      # 配置从池返回的连接的默认自动提交行为。默认值为true。
+      auto-commit: true
+      # 连接池的名称
+      pool-name: MyHikariCP
+      # 开启连接监测泄露
+      leak-detection-threshold: 5000
+      # 测试连接数据库
+      connection-test-query: SELECT 1
+
+mybatis:
+  type-aliases-package: com.example.hello.spring.boot.domain
+  mapper-locations: classpath:mapper/*.xml
+
+server:
+  port: 9090
+  servlet:
+    context-path: /boot
+
+logging:
+  file:
+    name: ../logs/spring-boot-hello.log
+  level.org.springframework.web: DEBUG
