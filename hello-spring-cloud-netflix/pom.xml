@@ -13,6 +13,7 @@
         <module>hello-spring-cloud-netflix-eureka</module>
         <module>hello-spring-cloud-netflix-provider</module>
         <module>hello-spring-cloud-netflix-consumer-ribbon</module>
+        <module>hello-spring-cloud-netflix-consumer-feign</module>
     </modules>
 
 </project>
