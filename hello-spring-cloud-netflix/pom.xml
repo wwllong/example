@@ -16,6 +16,7 @@
         <module>hello-spring-cloud-netflix-consumer-feign</module>
         <module>hello-spring-cloud-netflix-addons</module>
         <module>hello-spring-cloud-netflix-zuul</module>
+        <module>hello-spring-cloud-config</module>
     </modules>
 
 </project>
