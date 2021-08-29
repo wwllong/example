@@ -47,16 +47,19 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-        </dependency>
         <!-- Spring Cloud End -->
 
         <!-- 解决 thymeleaf 模板引擎一定要执行严格的 html5 格式校验问题 -->
         <dependency>
             <groupId>net.sourceforge.nekohtml</groupId>
             <artifactId>nekohtml</artifactId>
+        </dependency>
+
+        <!-- Addons  -->
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>addons-hystrix-dashboard</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 
@@ -66,7 +69,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>hello.spring.cloud.netflix.consumer.ribbon.RibbonConsumerApplication</mainClass>
+                    <mainClass>com.example.hello.spring.cloud.netflix.consumer.ribbon.RibbonConsumerApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

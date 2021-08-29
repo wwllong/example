@@ -9,9 +9,14 @@ spring:
       content-type: text/html
 
 server:
-  port: 8764
+  port: 8765
 
 eureka:
+  instance:
+    hostname: localhost
+    # 增加用于集群的配置，集群名为 consumer-ribbon，与 Turbine 的配置匹配
+    metadata-map:
+      cluster: consumer-ribbon
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
