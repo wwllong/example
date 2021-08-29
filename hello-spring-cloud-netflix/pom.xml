@@ -15,6 +15,7 @@
         <module>hello-spring-cloud-netflix-consumer-ribbon</module>
         <module>hello-spring-cloud-netflix-consumer-feign</module>
         <module>hello-spring-cloud-netflix-addons</module>
+        <module>hello-spring-cloud-netflix-zuul</module>
     </modules>
 
 </project>
