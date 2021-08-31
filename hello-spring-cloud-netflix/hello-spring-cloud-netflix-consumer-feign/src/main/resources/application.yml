@@ -1,21 +1,11 @@
 spring:
-  application:
-    name: hello-spring-cloud-netflix-consumer-feign
-  thymeleaf:
-    cache: false
-    mode: LEGACYHTML5
-    encoding: UTF-8
-    servlet:
-      content-type: text/html
-
-server:
-  port: 8765
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-
-feign:
-  hystrix:
-    enabled: true
+  cloud:
+    config:
+      # 配置服务中心的地址
+      uri: http://localhost:8888
+      # 配置文件名称的前缀
+      name: consumer-feign
+      # 配置仓库的分支
+      label: master
+      # 配置文件的环境标识（dev，test，prod）
+      profile: dev
