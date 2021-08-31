@@ -19,3 +19,18 @@ eureka:
 feign:
   hystrix:
     enabled: true
+
+# 增加健康检查配置
+# 这里的目的是开启 actuator/refresh 接口用于刷新配置
+management:
+  endpoint:
+    shutdown:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+# 测试动态刷新配置
+user:
+  name: 灶门炭治郎
