@@ -4,7 +4,7 @@
 
 ## 白皮书
 
-[iToken 白皮书](./white-book.html)
+[iToken 白皮书](./WHITE-BOOK.md)
 
 ## 开发环境
 
