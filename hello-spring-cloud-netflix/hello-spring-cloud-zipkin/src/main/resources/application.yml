@@ -3,6 +3,10 @@ spring:
     allow-bean-definition-overriding: true
   application:
     name: hello-spring-cloud-zipkin
+  boot:
+    admin:
+      client:
+        url: http://localhost:8084
 
 
 server:
