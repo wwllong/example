@@ -18,6 +18,7 @@
         <module>hello-spring-cloud-netflix-zuul</module>
         <module>hello-spring-cloud-config</module>
         <module>hello-spring-cloud-zipkin</module>
+        <module>hello-spring-cloud-admin</module>
     </modules>
 
 </project>

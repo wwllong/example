@@ -26,3 +26,12 @@ zuul:
     api-consumer-ribbon:
       path: /api/consumer/ribbon/**
       serviceId: hello-spring-cloud-netflix-consumer-ribbon
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health,info

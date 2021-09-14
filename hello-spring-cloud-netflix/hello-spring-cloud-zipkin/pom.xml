@@ -21,6 +21,7 @@
         <!-- Spring Settings -->
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <zipkin.version>2.10.1</zipkin.version>
+        <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
     </properties>
 
     <dependencyManagement>
@@ -32,6 +33,18 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- Spring Boot Admin Begin -->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <!-- Spring Boot Admin End -->
         </dependencies>
     </dependencyManagement>
 
