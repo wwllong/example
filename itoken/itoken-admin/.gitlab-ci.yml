@@ -1,0 +1,31 @@
+stages:
+  - build
+  - push
+  - deploy
+  - clean
+
+build:
+  stage: build
+  script:
+    - /usr/local/maven/apache-maven-3.6.3/bin/mvn clean package
+    - cp target/itoken-admin-1.0.0-SNAPSHOT.jar docker
+    - cd docker
+    - docker build -t 192.168.0.111:9090/itoken/itoken-admin .
+
+push:
+  stage: push
+  script:
+    - docker login 192.168.0.111:9090 -u admin -p Harbor12345
+    - docker push 192.168.0.111:9090/itoken/itoken-admin
+
+deploy:
+  stage: deploy
+  script:
+    - cd docker
+    - docker-compose down
+    - docker-compose up -d
+
+clean:
+  stage: clean
+  script:
+    - docker rmi $(docker images -q -f dangling=true)
