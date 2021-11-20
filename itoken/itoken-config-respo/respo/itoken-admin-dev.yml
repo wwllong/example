@@ -1,0 +1,25 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: itoken-admin
+  zipkin:
+    base-url: http://192.168.0.112:9411
+
+server:
+  port: 8084
+
+# Spring Boot Admin Server 相关配置
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.0.112:8761/eureka/,http://192.168.0.112:8861/eureka/,http://192.168.0.112:8961/eureka/
