@@ -28,4 +28,4 @@ deploy:
 clean:
   stage: clean
   script:
-    - docker rmi $(docker images -q -f dangling=true)
+    - if [[ $(docker images -q -f dangling=true) != '' ]]; then docker rmi $(docker images -q -f dangling=true); fi;
