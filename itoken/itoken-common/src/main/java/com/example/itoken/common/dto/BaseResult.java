@@ -10,7 +10,7 @@ import java.util.List;
 public class BaseResult implements Serializable {
 
     private final static String OK = "ok";
-    private final static String NOT_OK = "ok";
+    private final static String NOT_OK = "not_ok";
     private final static String SUCCESS = "成功操作";
 
     private String result;

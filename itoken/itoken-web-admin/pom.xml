@@ -21,13 +21,12 @@
             <artifactId>itoken-common</artifactId>
             <version>${parent.version}</version>
         </dependency>
-        <!-- iToken Begin -->
-
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>itoken-common-web</artifactId>
             <version>${parent.version}</version>
         </dependency>
+        <!-- iToken Begin -->
 
     </dependencies>
 
