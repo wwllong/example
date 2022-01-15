@@ -1,0 +1,4 @@
+# ZipKin Client Common Config
+spring:
+  zipkin:
+    base-url: http://192.168.0.112:9411

@@ -1,9 +1,8 @@
 package com.example.itoken.service.admin.test.sevice;
 
+import com.example.itoken.common.domain.TbSysUser;
 import com.example.itoken.service.admin.ServiceAdminApplication;
-import com.example.itoken.service.admin.domain.TbSysUser;
 import com.example.itoken.service.admin.service.AdminService;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

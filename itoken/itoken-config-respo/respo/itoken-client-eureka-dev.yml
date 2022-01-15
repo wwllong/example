@@ -1,0 +1,5 @@
+# Eureka Client Common Config
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.0.112:8761/eureka/,http://192.168.0.112:8861/eureka/,http://192.168.0.112:8961/eureka/

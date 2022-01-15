@@ -1,12 +1,6 @@
 spring:
   application:
     name: itoken-service-redis
-  zipkin:
-    base-url: http://192.168.0.112:9411
-  boot:
-    admin:
-      client:
-        url: http://192.168.0.112:8084
   redis:
     password: 123456
     lettuce:
@@ -21,17 +15,3 @@ spring:
 
 server:
   port: 8502
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://192.168.0.112:8761/eureka/,http://192.168.0.112:8861/eureka/,http://192.168.0.112:8961/eureka/
-
-management:
-  endpoint:
-    health:
-      show-details: always
-  endpoints:
-    web:
-      exposure:
-        include: health,info

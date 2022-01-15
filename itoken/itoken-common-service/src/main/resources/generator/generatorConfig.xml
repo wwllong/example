@@ -15,6 +15,21 @@
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
             <property name="mappers" value="tk.mybatis.mapper.MyMapper"/>
         </plugin>
+        <!-- 整合lombok -->
+        <plugin type="com.softwareloop.mybatis.generator.plugins.LombokPlugin">
+            <!-- enable annotations -->
+            <property name="builder" value="false"/>
+            <!-- annotation's option(boolean) -->
+            <property name="builder.fluent" value="false"/>
+            <!-- annotation's option(String) -->
+            <property name="builder.builderMethodName" value="myBuilder"/>
+            <property name="accessors" value="true"/>
+            <!-- annotation's option(array of String) -->
+            <property name="accessors.prefix" value="m_, _"/>
+            <!-- disable annotations -->
+            <property name="allArgsConstructor" value="false"/>
+        </plugin>
+
 
         <!-- 配置数据库连接 -->
         <jdbcConnection
@@ -25,21 +40,25 @@
         </jdbcConnection>
 
         <!-- 配置实体类存放路径 -->
-        <javaModelGenerator targetPackage="com.example.itoken.service.admin.domain" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.example.itoken.common.domain" targetProject="src/main/java"/>
 
         <!-- 配置 XML 存放路径 -->
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
 
         <!-- 配置 DAO 存放路径 -->
         <javaClientGenerator
-                targetPackage="com.example.itoken.service.admin.mapper"
+                targetPackage="com.example.itoken.common.mapper"
                 targetProject="src/main/java"
                 type="XMLMAPPER"/>
 
-        <!-- 配置需要生成的表，% 代表所有 -->
-        <table tableName="tb_sys_user">
+        <!-- 配置需要生成的表 -->
+        <table schema="itoken-service-admin" tableName="tb_sys_user">
             <!-- mysql 配置 -->
             <generatedKey column="user_code" sqlStatement="Mysql" identity="false"/>
+        </table>
+        <table schema="itoken-service-posts" tableName="tb_posts_post">
+            <!-- mysql 配置 -->
+            <generatedKey column="post_guid" sqlStatement="Mysql" identity="false"/>
         </table>
     </context>
 </generatorConfiguration>

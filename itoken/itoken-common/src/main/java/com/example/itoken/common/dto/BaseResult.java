@@ -27,6 +27,10 @@ public class BaseResult implements Serializable {
         return createBaseResult(OK, data, SUCCESS, null, null);
     }
 
+    public static BaseResult ok(Object data, Cursor cursor){
+        return createBaseResult(OK, data, SUCCESS, cursor, null);
+    }
+
     public static BaseResult notOk(List<Error> errorList){
         return createBaseResult(NOT_OK, null, null, null, errorList);
     }
@@ -41,8 +45,12 @@ public class BaseResult implements Serializable {
         return baseResult;
     }
 
+    public Boolean isSuccess(){
+        return OK.equals(this.getResult());
+    }
+
     @Data
-    public static class Cursor{
+    public static class Cursor {
         private int total;
         private int offset;
         private int limit;

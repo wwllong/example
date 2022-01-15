@@ -27,4 +27,9 @@ public class RedisServiceImpl implements RedisService {
         return ObjectUtil.isNotNull(obj) ? JSONUtil.toJsonStr(obj) : null;
     }
 
+    @Override
+    public void remove(String key) {
+        redisTemplate.delete(key);
+    }
+
 }

@@ -10,13 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AdminCtrl {
 
-    @Autowired
-    private AdminServiceClient adminServiceClient;
-
-    @GetMapping(value = {"", "login"})
-    public String login(){
-        BaseResult baseResult = adminServiceClient.login("wenwl@163.com", "123456");
-        System.out.println(baseResult);
+    @GetMapping(value = {"", "index"})
+    public String index(){
         return "index";
     }
+
 }

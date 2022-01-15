@@ -18,6 +18,11 @@
         <!-- iToken Begin -->
         <dependency>
             <groupId>com.example</groupId>
+            <artifactId>itoken-common-domain</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.example</groupId>
             <artifactId>itoken-common</artifactId>
             <version>${parent.version}</version>
         </dependency>
