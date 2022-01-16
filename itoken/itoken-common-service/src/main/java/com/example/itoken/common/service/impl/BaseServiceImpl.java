@@ -6,16 +6,13 @@ import com.example.itoken.common.service.BaseService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.MyMapper;
 
-@Service
 @Transactional(readOnly = true)
 public class BaseServiceImpl<T extends BaseDomain, D extends MyMapper<T>> implements BaseService<T> {
 
-    @Qualifier
+    @Autowired
     private D baseMapper;
 
     @Override

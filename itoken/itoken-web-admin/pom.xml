@@ -31,6 +31,12 @@
             <artifactId>itoken-common-web</artifactId>
             <version>${parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>itoken-service-api</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
         <!-- iToken Begin -->
 
     </dependencies>

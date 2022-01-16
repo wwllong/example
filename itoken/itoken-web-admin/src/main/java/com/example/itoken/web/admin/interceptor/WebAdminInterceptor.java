@@ -5,7 +5,7 @@ import cn.hutool.json.JSONUtil;
 import com.example.itoken.common.domain.TbSysUser;
 import com.example.itoken.common.dto.BaseResult;
 import com.example.itoken.common.utils.CookieUtils;
-import com.example.itoken.web.admin.client.AuthServiceClient;
+import com.example.itoken.service.api.client.AuthServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
