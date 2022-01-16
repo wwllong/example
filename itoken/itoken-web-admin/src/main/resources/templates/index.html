@@ -1,10 +1,40 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title> </title>
+    <title>iToken | 控制面板</title>
+    <th:block th:include="includes/header :: head"/>
 </head>
-<body>
-    Hello iToken Web Admin
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <th:block th:include="includes/nav :: nav"/>
+    <th:block th:include="includes/menu :: menu"/>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                仪表盘
+                <small>控制面板</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li class="active">仪表盘</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+        </section>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+    <th:block th:include="includes/copyright :: copyright"/>
+</div>
+
+<th:block th:include="includes/footer :: footer"/>
 </body>
 </html>

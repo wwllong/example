@@ -1,11 +1,9 @@
 package com.example.itoken.web.admin.interceptor;
 
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONUtil;
 import com.example.itoken.common.domain.TbSysUser;
-import com.example.itoken.common.dto.BaseResult;
 import com.example.itoken.common.utils.CookieUtils;
-import com.example.itoken.service.api.client.AuthServiceClient;
+import com.example.itoken.service.api.facade.SSOServiceClientFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,12 +17,15 @@ import java.util.Objects;
 
 public class WebAdminInterceptor implements HandlerInterceptor {
 
+    private final String ADMIN = "admin";
+    private final String TOKEN = "token";
+
     @Autowired
-    private AuthServiceClient authServiceClient;
+    private SSOServiceClientFacade authServiceClientFacade;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-        String token = CookieUtils.getCookieValue(request, "token");
+        String token = CookieUtils.getCookieValue(request, TOKEN);
 
         if (StrUtil.isBlank(token)) {
             request.getSession();
@@ -39,30 +40,32 @@ public class WebAdminInterceptor implements HandlerInterceptor {
 
         HttpSession session = request.getSession();
 
-        TbSysUser tbSysUser = (TbSysUser) session.getAttribute("tbSysUser");
-        // 已登录状态
+        TbSysUser tbSysUser = (TbSysUser) session.getAttribute(ADMIN);
+        // 已登录状态，校验token是否有效
         if (Objects.nonNull(tbSysUser)) {
-            if (Objects.nonNull(modelAndView)) {
-                modelAndView.addObject("tbSysUser", tbSysUser);
+            String token = CookieUtils.getCookieValue(request, TOKEN);
+            if (StrUtil.isNotBlank(token)) {
+                tbSysUser = authServiceClientFacade.getTbSysUserByToken(token);
+                if (Objects.isNull(tbSysUser)) {
+                    request.getSession().removeAttribute(ADMIN);
+                }
+            }else{
+                tbSysUser = null;
             }
         }
-        // 未登录
+        // 局部未登录，尝试从token获取
         else {
-            String token = CookieUtils.getCookieValue(request, "token");
-            if (StrUtil.isBlank(token)) {
-                BaseResult tbSysUserByToken = authServiceClient.getTbSysUserByToken(token);
-                Object obj = tbSysUserByToken.getData();
-                if (Objects.nonNull(obj)) {
-                    tbSysUser = JSONUtil.toBean(JSONUtil.parseObj(obj), TbSysUser.class);
-                    request.getSession().setAttribute("tbSysUser", tbSysUser);
-                }
+            String token = CookieUtils.getCookieValue(request, TOKEN);
+            if (StrUtil.isNotBlank(token)) {
+                tbSysUser = authServiceClientFacade.getTbSysUserByToken(token);
             }
-
         }
 
         // 二次确认
-        if (Objects.nonNull(tbSysUser)) {
+        if (Objects.isNull(tbSysUser)) {
             response.sendRedirect("http://localhost:8503/login?redirectUrl=http://localhost:8601");
+        }else if (Objects.nonNull(modelAndView)){
+            modelAndView.addObject(ADMIN, tbSysUser);
         }
 
     }
