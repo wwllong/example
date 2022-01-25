@@ -23,18 +23,14 @@
         </dependency>
         <dependency>
             <groupId>com.example</groupId>
-            <artifactId>itoken-common</artifactId>
-            <version>${parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.example</groupId>
             <artifactId>itoken-common-web</artifactId>
             <version>${parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>itoken-service-api</artifactId>
-            <version>${parent.version}</version>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.1.4</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- iToken Begin -->

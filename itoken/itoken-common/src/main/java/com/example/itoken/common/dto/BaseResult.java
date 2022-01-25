@@ -13,7 +13,10 @@ public class BaseResult<T> implements Serializable {
     private final static String OK = "ok";
     private final static String NOT_OK = "not_ok";
     private final static String SUCCESS = "成功操作";
+    private final static Integer OK_STATUS = 200;
+    private final static Integer NOT_OK_STATUS = 200;
 
+    private Integer status;
     private String result;
     private T data;
     private String success;
@@ -21,23 +24,24 @@ public class BaseResult<T> implements Serializable {
     private List<Error> errorList;
 
     public static BaseResult<Boolean> ok(){
-        return createBaseResult(OK, Boolean.TRUE, SUCCESS, null, null);
+        return createBaseResult(OK_STATUS, OK, Boolean.TRUE, SUCCESS, null, null);
     }
 
     public static <T> BaseResult<T> ok(T data){
-        return createBaseResult(OK, data, SUCCESS, null, null);
+        return createBaseResult(OK_STATUS, OK, data, SUCCESS, null, null);
     }
 
     public static <T> BaseResult<T> ok(T data, Cursor cursor){
-        return createBaseResult(OK, data, SUCCESS, cursor, null);
+        return createBaseResult(OK_STATUS, OK, data, SUCCESS, cursor, null);
     }
 
     public static BaseResult<Boolean> notOk(List<Error> errorList){
-        return createBaseResult(NOT_OK, Boolean.FALSE, null, null, errorList);
+        return createBaseResult(NOT_OK_STATUS, NOT_OK, Boolean.FALSE, null, null, errorList);
     }
 
-    private static <T> BaseResult<T> createBaseResult(String result, T data, String success, Cursor cursor, List<Error> errorList) {
+    private static <T> BaseResult<T> createBaseResult(Integer status, String result, T data, String success, Cursor cursor, List<Error> errorList) {
         BaseResult<T> baseResult = new BaseResult<>();
+        baseResult.status = status;
         baseResult.result = result;
         baseResult.data = data;
         baseResult.success = success;
@@ -46,7 +50,7 @@ public class BaseResult<T> implements Serializable {
         return baseResult;
     }
 
-    public Boolean isSuccess(){
+    public Boolean success(){
         return OK.equals(this.getResult());
     }
 

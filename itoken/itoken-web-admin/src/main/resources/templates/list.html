@@ -1,0 +1,158 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>iToken | 管理员管理</title>
+    <th:block th:include="includes/header :: head"/>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <th:block th:include="includes/nav :: nav"/>
+    <th:block th:include="includes/menu :: menu"/>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                用户管理
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li class="active">用户列表</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <th:block th:include="tags/alert :: alert"/>
+
+                    <div class="box box-info">
+                        <div class="box-header">
+                            <h3 class="box-title">用户列表</h3>
+
+                            <div class="row" style="padding-left:12px; padding: 10px;">
+                                <a href="/user/form" class="btn btn-sm btn-success" type="button"><i class="fa fa-plus"></i> 新增</a>
+                                <button type="button" class="btn btn-sm btn-danger" onclick="App.batchDelete('/user/delete')"><i class="fa fa-trash-o"></i> 删除</button>
+                            </div>
+
+                            <!-- 搜索条件 -->
+                            <div class="row">
+                                <from class="navbar-form">
+                                    <div class="form-group input-group-sm">
+                                        <div class="form-inline">
+                                            <div class="form-group">
+                                                <label for="username" class="control-label">用户名：</label>
+                                                <input id="username" class="form-control" placeholder="请输入用户名"/>
+                                            </div>
+                                            <div class="form-group input-group-sm">
+                                                <label for="email" class="control-label">邮箱：</label>
+                                                <input id="email" class="form-control" placeholder="请输入邮箱"/>
+                                            </div>
+                                            <div class="form-group input-group-sm">
+                                                <label for="phone" class="control-label">手机：</label>
+                                                <input id="phone" class="form-control" placeholder="请输入手机"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-sm btn-default" id="btn-search"><i class="fa fa-search"></i> 搜索</button>
+                                    </div>
+                                </from>
+                            </div>
+
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive no-padding">
+                            <table id="dataTable" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" class="minimal checkbox-all" /></th>
+                                        <th>账号</th>
+                                        <th>用户名</th>
+                                        <th>手机号</th>
+                                        <th>邮箱</th>
+                                        <th>更新时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+    <th:block th:include="includes/copyright :: copyright"/>
+</div>
+
+<th:block th:include="includes/footer :: footer"/>
+
+<!-- 自定义模态框 -->
+<th:block th:include="tags/modal_confirm :: confirm"/>
+<th:block th:include="tags/modal_detail :: detail"/>
+
+
+<script>
+
+    $(function () {
+        // 表单验证-初始化
+        Validate.validateForm("inputForm");
+
+        // 表单对应的列
+        let columns = [
+            {
+                "data": function (row, type, val, meta) {
+                    return '<input id="' + row.userCode + '" type="checkbox" class="minimal" />';
+                }
+            },
+            {"data": "loginCode"},
+            {"data": "userName"},
+            {"data": "phone"},
+            {"data": "email"},
+            {
+                "data": function (row, type, val, meta) {
+                    return moment(row.updated).format("YYYY-MM-DD HH:mm:ss");
+                    }
+            },
+            {
+                "data": function (row, type, val, meta) {
+                    var detailURL = "/user/detail?id="+row.userCode;
+                    var deleteURL = "/user/delete";
+                    return '<button type="button" class="btn btn-sm btn-primary" onclick="App.showDetail(\''+detailURL+'\')"><i class="fa fa-sticky-note-o"></i> 查看</button>&nbsp;&nbsp;' +
+                        '<a href="/user/form?id='+row.userCode+'" type="button" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> 编辑</a>&nbsp;&nbsp;' +
+                        '<button  type="button" class="btn btn-sm btn-danger" onclick="App.deleteSingle(\'' + deleteURL + '\', \'' + row.userCode + '\')"><i class="fa fa-trash-o"></i> 删除</button >';
+
+                }
+            }
+        ];
+
+        // 表格初始化
+        let _dataTable = App.initDataTables( "/user/page",columns);
+
+        // 搜索
+        $("#btn-search").bind("click",function () {
+            var param = {
+                "userName": $("#username").val(),
+                "email": $("#email").val(),
+                "phone": $("#phone").val(),
+            };
+            App.search(_dataTable,param);
+        });
+
+    });
+
+</script>
+</body>
+</html>

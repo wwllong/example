@@ -1,0 +1,92 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>iToken | 用户管理</title>
+    <th:block th:include="includes/header :: head"/>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <th:block th:include="includes/nav :: nav"/>
+    <th:block th:include="includes/menu :: menu"/>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                用户管理
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <th:block th:include="tags/alert :: alert"/>
+
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title" th:text="${tbSysUser.loginCode != null} ? '编辑用户' : '新增用户'"></h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form id="inputForm" action="/user/save" method="post" class="form-horizontal" modelAttribute="tbSysUser">
+                            <input type="hidden" name="userCode" th:value="${tbSysUser.userCode}"/>
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="loginCode" class="col-sm-2 control-label">账号</label>
+
+                                    <div class="col-sm-10">
+                                        <input id="loginCode" type="text" th:value="${tbSysUser.loginCode}" name="loginCode" class="form-control required" placeholder="请输入账号"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-sm-2 control-label">密码</label>
+
+                                    <div class="col-sm-10">
+                                        <input id="password" type="password" name="password" class="form-control required" placeholder="请输入密码"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="userName" class="col-sm-2 control-label">姓名</label>
+
+                                    <div class="col-sm-10">
+                                        <input id="userName" type="text" th:value="${tbSysUser.userName}" name="userName" class="form-control required" placeholder="请输入用户姓名" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone" class="col-sm-2 control-label">手机</label>
+
+                                    <div class="col-sm-10">
+                                        <input id="phone" type="text" th:value="${tbSysUser.phone}" name="phone" class="form-control required mobile" placeholder="请输入手机号" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="button" class="btn btn-default" onclick="history.go(-1);">返回</button>
+                                <button type="submit" class="btn btn-info pull-right">提交</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+    <th:block th:include="includes/copyright :: copyright"/>
+</div>
+
+<th:block th:include="includes/footer :: footer"/>
+<script>
+    $(function () {
+       Validate.validateForm("inputForm");
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="alert">
+    <div  th:if ="${baseResult != null}" th:class="${baseResult.success} ? 'alert alert-success' : 'alert alert-danger alert-dismissible'">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <i class="icon fa fa-ban">
+            <span th:text="${baseResult.success} ? '操作成功' : ${baseResult.errorList}"></span>
+        </i>
+    </div>
+</th:block>
+
+</html>

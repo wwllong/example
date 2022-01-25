@@ -1,0 +1,35 @@
+<th:block th:fragment="detail">
+
+<div class="box-body">
+    <table id="detailTable" class="table">
+        <tbody>
+            <tr>
+                <td>账号：</td>
+                <td th:text="${tbSysUser.loginCode}"></td>
+            </tr>
+            <tr>
+                <td>邮箱：</td>
+                <td th:text="${tbSysUser.email}"></td>
+            </tr>
+            <tr>
+                <td>姓名：</td>
+                <td th:text="${tbSysUser.userName}"></td>
+            </tr>
+            <tr>
+                <td>手机：</td>
+                <td th:text="${tbSysUser.phone}"></td>
+            </tr>
+            <tr>
+                <td>创建时间：</td>
+
+                <td><span th:text="${#dates.format(tbSysUser.createDate,'yyyy-MM-dd HH:mm:ss')}"></span></td>
+            </tr>
+            <tr>
+                <td>更新时间：</td>
+                <td><span th:text="${#dates.format(tbSysUser.updateDate,'yyyy-MM-dd HH:mm:ss')}"></span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</th:block>
