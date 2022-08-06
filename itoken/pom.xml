@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>itoken</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>itoken-admin</module>
+        <module>itoken-common</module>
+        <module>itoken-common-domain</module>
+        <module>itoken-common-service</module>
+        <module>itoken-common-web</module>
+        <module>itoken-config</module>
+        <module>itoken-dependencies</module>
+        <module>itoken-eureka</module>
+        <module>itoken-service-admin</module>
+        <module>itoken-service-api</module>
+        <module>itoken-service-redis</module>
+        <module>itoken-service-sso</module>
+        <module>itoken-web-admin</module>
+        <module>itoken-zipkin</module>
+        <module>itoken-zuul</module>
+    </modules>
+
+</project>

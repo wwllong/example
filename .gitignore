@@ -54,4 +54,4 @@ hs_err_pid*
 */.idea
 */target
 *.lst
-/hello-spring-cloud-netflix/hello-spring-cloud-netflix-consumer-feign/target/
+/**/**/target/
