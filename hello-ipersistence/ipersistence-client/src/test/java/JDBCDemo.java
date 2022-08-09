@@ -1,4 +1,4 @@
-import entity.User;
+import com.example.hello.ipersistence.entity.User;
 
 import java.sql.*;
 
