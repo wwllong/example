@@ -1,9 +1,9 @@
 <mapper namespace="user">
-    <select id="selectOne" paramterType="com.example.hello.ipersistence.entity.User"
-            resultType="com.example.hello.ipersistence.entity.User">
+    <select id="selectOne" paramterType="com.example.hello.ipersistence.pojo.entity.User"
+            resultType="com.example.hello.ipersistence.pojo.entity.User">
         select * from user where id = #{id} and username =#{username}
     </select>
-    <select id="selectList" resultType="com.example.hello.ipersistence.entity.User">
+    <select id="selectList" resultType="com.example.hello.ipersistence.pojo.entity.User">
         select * from user
     </select>
 </mapper>

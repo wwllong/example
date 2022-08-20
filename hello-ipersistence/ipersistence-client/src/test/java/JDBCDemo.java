@@ -1,4 +1,4 @@
-import com.example.hello.ipersistence.entity.User;
+import com.example.hello.ipersistence.pojo.entity.User;
 
 import java.sql.*;
 

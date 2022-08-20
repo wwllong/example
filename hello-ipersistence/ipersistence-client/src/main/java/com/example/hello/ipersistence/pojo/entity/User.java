@@ -1,4 +1,4 @@
-package com.example.hello.ipersistence.entity;
+package com.example.hello.ipersistence.pojo.entity;
 
 public class User {
 
