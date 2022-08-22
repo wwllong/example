@@ -36,6 +36,7 @@ public class IPersistenceTest {
         for (User user1 : userList) {
             System.out.println(user1);
         }
+        sqlSession.close();
     }
 
     @Test
@@ -45,6 +46,7 @@ public class IPersistenceTest {
         user.setUsername("jack");
         User user2 = sqlSession.selectOne("user.selectOne", user);
         System.out.println(user2);
+        sqlSession.close();
     }
 
 }

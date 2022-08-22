@@ -71,7 +71,7 @@ public class SimpleExecutor implements Executor{
             }
             results.add((E)o);
         }
-        close();
+
         return results;
     }
 
