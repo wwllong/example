@@ -1,5 +1,6 @@
 package com.example.hello.ipersistence;
 
+import com.example.hello.ipersistence.dao.IUserDao;
 import com.example.hello.ipersistence.io.Resources;
 import com.example.hello.ipersistence.pojo.entity.User;
 import com.example.hello.ipersistence.session.SqlSession;
@@ -47,6 +48,25 @@ public class IPersistenceTest {
         User user2 = sqlSession.selectOne("user.selectOne", user);
         System.out.println(user2);
         sqlSession.close();
+    }
+
+    @Test
+    public void testSelectListByProxy() throws Exception {
+        IUserDao userDao = sqlSession.getMapper(IUserDao.class);
+        List<User> userList = userDao.selectList();
+        for (User user1 : userList) {
+            System.out.println(user1);
+        }
+    }
+
+    @Test
+    public void testSelectOneByProxy() throws Exception {
+        User user = new User();
+        user.setId(1);
+        user.setUsername("jack");
+        IUserDao userDao = sqlSession.getMapper(IUserDao.class);
+        User user2 = userDao.selectOne(user);
+        System.out.println(user2);
     }
 
 }

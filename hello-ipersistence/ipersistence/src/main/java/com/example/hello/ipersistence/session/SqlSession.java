@@ -15,4 +15,6 @@ public interface SqlSession {
 
     void close() throws SQLException;
 
+    <T> T getMapper(Class<?> mapperClass) throws SQLException;
+
 }

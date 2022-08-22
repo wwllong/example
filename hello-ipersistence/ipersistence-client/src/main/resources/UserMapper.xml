@@ -1,4 +1,5 @@
-<mapper namespace="user">
+<!--<mapper namespace="user">-->
+<mapper namespace="com.example.hello.ipersistence.dao.IUserDao">
     <select id="selectOne" parameterType="com.example.hello.ipersistence.pojo.entity.User"
             resultType="com.example.hello.ipersistence.pojo.entity.User">
         select * from user where id = #{id} and username = #{username}

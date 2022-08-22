@@ -3,6 +3,7 @@ package com.example.hello.ipersistence.session;
 import com.example.hello.ipersistence.pojo.Configuration;
 import com.example.hello.ipersistence.pojo.MappedStatement;
 
+import java.lang.reflect.*;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -40,5 +41,27 @@ public class DefaultSqlSession implements SqlSession {
     @Override
     public void close() throws SQLException {
         simpleExecutor.close();
+    }
+
+    @Override
+    public <T> T getMapper(Class<?> mapperClass) throws SQLException {
+        Object proxyInstance = Proxy.newProxyInstance(DefaultSqlSession.class.getClassLoader(), new Class[]{mapperClass}, new InvocationHandler() {
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                // selectOne / selectList
+                String methodName = method.getName();
+                // className : namespace
+                String className = method.getDeclaringClass().getName();
+                // statementId: namespace.id = 接口全限名.方法名
+                String key = className+"."+methodName;
+                // parameter & returnType
+                Type genericReturnType = method.getGenericReturnType();
+                //判断是否实现泛型类型参数化
+                if(genericReturnType instanceof ParameterizedType){
+                    return selectList(key, args);
+                }
+                return selectOne(key, args);
+            }});
+        return (T)proxyInstance;
     }
 }
