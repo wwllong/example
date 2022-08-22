@@ -5,5 +5,8 @@ package com.example.hello.ipersistence.session;
  * @version 1.0.0
  * @date 2022/8/19 01:01
  */
-public class SqlSessionFactory {
+public interface SqlSessionFactory {
+
+    SqlSession openSession();
+
 }

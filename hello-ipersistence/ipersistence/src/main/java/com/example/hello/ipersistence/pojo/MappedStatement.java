@@ -12,7 +12,7 @@ public class MappedStatement {
     // sql语句
     private String sql;
     // 输入参数
-    private Class<?> paramterType;
+    private Class<?> parameterType;
     // 输出参数
     private Class<?> resultType;
 
@@ -32,12 +32,12 @@ public class MappedStatement {
         this.sql = sql;
     }
 
-    public Class<?> getParamterType() {
-        return paramterType;
+    public Class<?> getparameterType() {
+        return parameterType;
     }
 
-    public void setParamterType(Class<?> paramterType) {
-        this.paramterType = paramterType;
+    public void setparameterType(Class<?> parameterType) {
+        this.parameterType = parameterType;
     }
 
     public Class<?> getResultType() {

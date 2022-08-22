@@ -18,10 +18,14 @@ import java.util.List;
 public class XMLMapperBuilder {
 
     private Configuration configuration;
+
     public XMLMapperBuilder(Configuration configuration) {
         this.configuration = configuration;
     }
 
+    /**
+     * 解析SQL Mapper文件封装到mappedStatementMap
+     */
     public void parse(InputStream inputStream) throws DocumentException, ClassNotFoundException {
         Document document = new SAXReader().read(inputStream);
         Element rootElement = document.getRootElement();
@@ -31,23 +35,23 @@ public class XMLMapperBuilder {
         // mappedStatement handle
         for (Element element : select) {
             String id = element.attributeValue("id");
-            String paramterType = element.attributeValue("paramterType");
+            String parameterType = element.attributeValue("parameterType");
             String resultType = element.attributeValue("resultType");
-            Class<?> paramterTypeClass = getClassType(paramterType);
+            Class<?> parameterTypeClass = getClassType(parameterType);
             Class<?> resultTypeClass = getClassType(resultType);
             String key = namespace + "." + id;
             String textTrim = element.getTextTrim();
             MappedStatement mappedStatement = new MappedStatement();
             mappedStatement.setId(id);
-            mappedStatement.setParamterType(paramterTypeClass);
+            mappedStatement.setparameterType(parameterTypeClass);
             mappedStatement.setResultType(resultTypeClass);
             mappedStatement.setSql(textTrim);
             configuration.getMappedStatementMap().put(key , mappedStatement);
         }
     }
 
-    private Class<?> getClassType(String paramterType) throws ClassNotFoundException {
-        return Class.forName(paramterType);
+    private Class<?> getClassType(String parameterType) throws ClassNotFoundException {
+        return parameterType != null ? Class.forName(parameterType) : null;
     }
 
 }

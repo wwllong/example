@@ -41,6 +41,7 @@ public class XMLConfigBuilder {
             String value = propertyElement.attributeValue("value");
             properties.setProperty(name,value);
         }
+        // 连接池
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
         comboPooledDataSource.setDriverClass(properties.getProperty("driverClass"));
         comboPooledDataSource.setJdbcUrl(properties.getProperty("jdbcUrl"));
