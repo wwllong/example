@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.hello.mybatis.mapper.OrderMapper">
+
+<!--    <resultMap id="orderMap" type="org.example.hello.mybatis.entity.Order">-->
+<!--        <result column="order_no" property="orderNo"/>-->
+<!--        <result column="uid" property="user.id"/>-->
+<!--        <result column="username" property="user.username"/>-->
+<!--        <result column="password" property="user.password"/>-->
+<!--    </resultMap>-->
+
+<!--    <resultMap id="orderMap" type="org.example.hello.mybatis.entity.Order">-->
+<!--        <result property="id" column="id"/>-->
+<!--        <result property="orderNo" column="order_no"/>-->
+<!--        <result property="amount" column="amount"/>-->
+<!--        <association property="user" javaType="org.example.hello.mybatis.entity.User">-->
+<!--            <result column="uid" property="id"/>-->
+<!--            <result column="username" property="username"/>-->
+<!--            <result column="password" property="password"/>-->
+<!--        </association>-->
+<!--    </resultMap>-->
+
+<!--    <select id="findAll" resultMap="orderMap">-->
+<!--        select * from orders o, user u where o.uid = u.id-->
+<!--    </select>-->
+
+</mapper>

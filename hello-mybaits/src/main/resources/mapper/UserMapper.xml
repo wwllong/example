@@ -1,21 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="userMapper">
-    <select id="findAll" resultType="org.example.hello.mybatis.entity.User">
-        select * from User
-    </select>
+<!--传统开发-->
+<!--<mapper namespace="userMapper">-->
+<!--    <select id="findAll" resultType="org.example.hello.mybatis.entity.User">-->
+<!--        select * from User-->
+<!--    </select>-->
 
-    <insert id="add" parameterType="org.example.hello.mybatis.entity.User">
-        insert into user(username, password) values(#{username}, #{password})
-    </insert>
+<!--    <insert id="add" parameterType="org.example.hello.mybatis.entity.User">-->
+<!--        insert into user(username, password) values(#{username}, #{password})-->
+<!--    </insert>-->
 
-    <update id="update" parameterType="org.example.hello.mybatis.entity.User">
-        update user set username = #{username}, password = #{password} where id = #{id}
-    </update>
+<!--    <update id="update" parameterType="org.example.hello.mybatis.entity.User">-->
+<!--        update user set username = #{username}, password = #{password} where id = #{id}-->
+<!--    </update>-->
 
-    <delete id="delete" parameterType="java.lang.Integer">
-        delete from user where id= #{id}
-    </delete>
+<!--    <delete id="delete" parameterType="java.lang.Integer">-->
+<!--        delete from user where id= #{id}-->
+<!--    </delete>-->
 
+<!--</mapper>-->
+
+<!--传统复杂开发-->
+<!--<mapper namespace="org.example.hello.mybatis.mapper.UserMapper">-->
+
+<!--    <resultMap id="userMap" type="org.example.hello.mybatis.entity.User">-->
+<!--        <result column="uid" property="id"></result>-->
+<!--        <result column="username" property="username"></result>-->
+<!--        <result column="password" property="password"></result>-->
+<!--        <collection property="orderList" ofType="org.example.hello.mybatis.entity.Order">-->
+<!--            <result column="o.id" property="id"></result>-->
+<!--            <result column="order_no" property="orderNo"></result>-->
+<!--            <result column="amount" property="amount"></result>-->
+<!--        </collection>-->
+<!--    </resultMap>-->
+
+<!--    <select id="findAll" resultMap="userMap">-->
+<!--        select * from user u left join orders o on u.id = o.uid;-->
+<!--    </select>-->
+
+<!--    <resultMap id="userMapWithRole" type="org.example.hello.mybatis.entity.User">-->
+<!--        <result column="uid" property="id"></result>-->
+<!--        <result column="username" property="username"></result>-->
+<!--        <result column="password" property="password"></result>-->
+<!--        <collection property="roleList" ofType="org.example.hello.mybatis.entity.Role">-->
+<!--            <result column="rid" property="id"></result>-->
+<!--            <result column="role_name" property="roleName"></result>-->
+<!--        </collection>-->
+<!--    </resultMap>-->
+
+<!--    <select id="findAllWithRole" resultMap="userMapWithRole">-->
+<!--        select u.*, r.id rid, r.role_name-->
+<!--        from user u-->
+<!--        left join user_role ur on u.id = ur.user_id-->
+<!--        inner join role r on ur.role_id = r.id-->
+<!--    </select>-->
+
+<!--</mapper>-->
+
+<!--注解开发-->
+<mapper namespace="org.example.hello.mybatis.mapper.UserMapper">
+    <!--开启二级缓存-->
+<!--    <cache blocking="true"/>-->
+
+<!--    <select id="findById" resultType="org.example.hello.mybatis.entity.User" flushCache="false">-->
+<!--        select * from user where id = #{id}-->
+<!--    </select>-->
 </mapper>
