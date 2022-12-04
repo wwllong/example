@@ -1,5 +1,6 @@
 package org.example.hello.mybatis.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -7,7 +8,11 @@ import java.util.List;
  * @author jack.wen
  * @version 1.0.0
  */
+@Table(name = "user")
 public class User implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String username;
     private String password;
@@ -15,12 +20,14 @@ public class User implements Serializable {
     /**
      * 代表当前用户具备哪些订单
      */
+    @Transient
     private List<Order> orderList;
 
     /**
      * 代表当前用户具备哪些角色
      */
-    private List<Role> roleList;
+    @Transient
+    private transient List<Role> roleList;
 
     public int getId() {
         return id;

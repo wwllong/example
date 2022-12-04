@@ -5,9 +5,25 @@
 
     <settings>
         <!--开启二级缓存-->
-        <setting name="cacheEnabled" value="true"/>
+        <setting name="cacheEnabled" value="false"/>
         <setting name="logImpl" value="LOG4J"/>
     </settings>
+
+    <plugins>
+        <plugin interceptor="org.example.hello.mybatis.plugin.ExamplePlugin">
+            <property name="name" value="jack"/>
+        </plugin>
+        <!--注意:分⻚助手的插件 配置在通用馆mapper之前-->
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <!--指定方言-->
+            <property name="dialect" value="mysql"/>
+        </plugin>
+
+        <plugin interceptor="tk.mybatis.mapper.mapperhelper.MapperInterceptor">
+            <!--通用Mapper接口，多个通用接口用逗号隔开-->
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+        </plugin>
+    </plugins>
 
     <environments default="dev">
         <environment id="dev">

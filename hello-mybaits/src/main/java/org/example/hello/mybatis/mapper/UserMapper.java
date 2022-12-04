@@ -1,8 +1,8 @@
 package org.example.hello.mybatis.mapper;
 
 import org.apache.ibatis.annotations.*;
-import org.example.hello.mybatis.entity.Order;
 import org.example.hello.mybatis.entity.User;
+import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * @since 2022/10/27 00:04
  */
 @CacheNamespace(blocking = true, implementation = org.mybatis.caches.redis.RedisCache.class)
-public interface UserMapper {
+public interface UserMapper extends Mapper<User> {
 
 //    传统复杂开发
 //    List<User> findAll();
