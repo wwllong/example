@@ -7,6 +7,9 @@
         <!--开启二级缓存-->
         <setting name="cacheEnabled" value="false"/>
         <setting name="logImpl" value="LOG4J"/>
+        <!--开启延迟加载-->
+<!--        <setting name="lazyLoadingEnabled" value="true"/>-->
+        <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
 
     <plugins>

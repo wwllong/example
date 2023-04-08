@@ -16,6 +16,7 @@ public interface UserMapper extends Mapper<User> {
 //    传统复杂开发
 //    List<User> findAll();
 //    List<User> findAllWithRole();
+//    List<User> findAllLazy();
 
 //  注解开发
     @Select("select * from User")

@@ -76,4 +76,23 @@ public class MyBatisComplexTest {
 //        sqlSession.close();
     }
 
+//    @Test
+//    public void testOne2ManyLazy() throws IOException {
+//        // 加载核⼼配置⽂件
+//        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+//        // 获得sqlSession⼯⼚对象
+//        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+//        // 获得sqlSession对象
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+//        // 执⾏sql语句
+//        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+//        List<User> all = mapper.findAllLazy();
+//        for(User usr : all){
+//            System.out.println(usr.getId());
+//            System.out.println(usr.getOrderList());
+//        }
+//        // 释放资源
+//        sqlSession.close();
+//    }
+
 }

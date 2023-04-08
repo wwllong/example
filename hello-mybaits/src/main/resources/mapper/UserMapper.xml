@@ -56,14 +56,30 @@
 <!--        inner join role r on ur.role_id = r.id-->
 <!--    </select>-->
 
+<!--    <resultMap id="userMap" type="org.example.hello.mybatis.entity.User">-->
+<!--        <result column="uid" property="id"/>-->
+<!--        <result column="username" property="username"/>-->
+<!--        <result column="password" property="password"/>-->
+<!--        <collection property="orderList" ofType="org.example.hello.mybatis.entity.Order" column="id"-->
+<!--                    select="org.example.hello.mybatis.mapper.OrderMapper.findByUid" fetchType="lazy">-->
+<!--            <result column="id" property="id"/>-->
+<!--            <result column="order_no" property="orderNo"/>-->
+<!--            <result column="amount" property="amount"/>-->
+<!--        </collection>-->
+<!--    </resultMap>-->
+
+<!--    <select id="findAllLazy" resultMap="userMap">-->
+<!--        select * from user-->
+<!--    </select>-->
+
 <!--</mapper>-->
 
 <!--注解开发-->
-<mapper namespace="org.example.hello.mybatis.mapper.UserMapper">
+<!--<mapper namespace="org.example.hello.mybatis.mapper.UserMapper">-->
     <!--开启二级缓存-->
 <!--    <cache blocking="true"/>-->
 
 <!--    <select id="findById" resultType="org.example.hello.mybatis.entity.User" flushCache="false">-->
 <!--        select * from user where id = #{id}-->
 <!--    </select>-->
-</mapper>
+<!--</mapper>-->
