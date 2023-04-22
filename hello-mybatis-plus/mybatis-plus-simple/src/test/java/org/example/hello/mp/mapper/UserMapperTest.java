@@ -1,5 +1,6 @@
 package org.example.hello.mp.mapper;
 
+import com.baomidou.mybatisplus.core.MybatisSqlSessionFactoryBuilder;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -24,6 +25,19 @@ public class UserMapperTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         List<User> all = mapper.findAll();
+        all.forEach(System.out::println);
+    }
+
+
+    @Test
+    public void testFindAllByMP() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("mybatis-config.xml");
+        // 使⽤的是MP的MybatisSqlSessionFactoryBuilder
+        SqlSessionFactory sqlSessionFactory = new MybatisSqlSessionFactoryBuilder().build(resourceAsStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        // BaseMapper中定义的⽅法
+        List<User> all = mapper.selectList(null);
         all.forEach(System.out::println);
     }
 
