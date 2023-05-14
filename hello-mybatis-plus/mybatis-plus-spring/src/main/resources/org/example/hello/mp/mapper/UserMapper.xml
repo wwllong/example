@@ -4,6 +4,6 @@
 
 <mapper namespace="org.example.hello.mp.mapper.UserMapper">
     <select id="findAll" resultType="org.example.hello.mp.entity.User">
-        select * from User
+        select * from user
     </select>
 </mapper>
