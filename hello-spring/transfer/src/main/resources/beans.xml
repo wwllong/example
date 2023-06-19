@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans>
+    <!--id标识对象，class是类的全限定类名-->
+    <bean id="accountDao" class="com.example.transfer.dao.impl.JdbcAccountDaoImpl">
+        <property name="ConnectionUtils" ref="connectionUtils"/>
+    </bean>
+    <bean id="transferService" class="com.example.transfer.service.impl.TransferServiceImpl">
+        <!--set+ name 之后锁定到传值的set方法了，通过反射技术可以调用该方法传入对应的值-->
+        <property name="AccountDao" ref="accountDao"/>
+    </bean>
+
+    <!--连接管理工具-->
+    <bean id="connectionUtils" class="com.example.transfer.utils.ConnectionUtils"/>
+    <!--事务管理器-->
+    <bean id="transactionManager" class="com.example.transfer.utils.TransactionManager">
+        <property name="ConnectionUtils" ref="connectionUtils"/>
+    </bean>
+    <!--代理对象工厂-->
+    <bean id="proxyFactory" class="com.example.transfer.factory.ProxyFactory">
+        <property name="TransactionManager" ref="transactionManager"/>
+    </bean>
+</beans>
