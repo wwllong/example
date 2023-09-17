@@ -18,12 +18,17 @@ public class IoCTest {
         // 第一次getBean该对象
         Object accountPojo = applicationContext.getBean("accountPojo");
 
-        AccountDao accountDao = (AccountDao) applicationContext.getBean("accountDao");
+//        AccountDao accountDao = (AccountDao) applicationContext.getBean("accountDao");
+//
+//        accountDao.queryAccountByCardNo("1111111");
+//        System.out.println("accountDao：" + accountDao);
+//        AccountDao accountDao1 = (AccountDao) applicationContext.getBean("accountDao");
+//        System.out.println("accountDao1：" + accountDao1);
 
-        accountDao.queryAccountByCardNo("1111111");
-        System.out.println("accountDao：" + accountDao);
-        AccountDao accountDao1 = (AccountDao) applicationContext.getBean("accountDao");
-        System.out.println("accountDao1：" + accountDao1);
+        Object company = applicationContext.getBean("company");
+        System.out.println(company);
+        Object companyFactoryBean = applicationContext.getBean("&company");
+        System.out.println(companyFactoryBean);
 
 
         Object connectionUtils = applicationContext.getBean("connectionUtils");

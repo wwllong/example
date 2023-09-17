@@ -91,5 +91,9 @@
     <!--lazy-init默认为false立即加载-->
     <bean id="accountPojo" class="com.example.transfer.pojo.Account" lazy-init="true"/>
 
+    <bean id="company" class="com.example.transfer.factory.CompanyFactoryBean">
+        <property name="companyInfo" value="万隆同学,广州,1"/>
+    </bean>
+
 
 </beans>

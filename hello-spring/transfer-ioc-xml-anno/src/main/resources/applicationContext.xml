@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        https://www.springframework.org/schema/context/spring-context.xsd">
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--开启注解扫描，base-package指定扫描的包路径-->
     <context:component-scan base-package="com.example.transfer"/>
@@ -22,6 +25,28 @@
 
     <!--lazy-init默认为false立即加载-->
     <bean id="accountPojo" class="com.example.transfer.pojo.Account" lazy-init="true"/>
+
+    <!--把通知bean交给spring来管理-->
+    <bean id="logUtils" class="com.example.transfer.utils.LogUtils"/>
+    <!-- aop配置，就是术语落地-->
+<!--    <aop:config proxy-target-class="true">-->
+<!--    <aop:config>-->
+<!--        &lt;!&ndash;配置切⾯&ndash;&gt;-->
+<!--        <aop:aspect id="logAdvice" ref="logUtils">-->
+<!--            &lt;!&ndash;配置切点&ndash;&gt;-->
+<!--            <aop:pointcut id="pointcut1" expression="execution(public * com.example.transfer.service.impl.TransferServiceImpl.transfer(java.lang.String, java.lang.String, int))"/>-->
+<!--            &lt;!&ndash;配置前置通知&ndash;&gt;-->
+<!--            <aop:before method="beforeMethod" pointcut-ref="pointcut1"/>-->
+<!--            &lt;!&ndash;<aop:before method="beforeMethod" pointcut="execution(public * com.example.transfer.service.impl.TransferServiceImpl.transfer(java.lang.String, java.lang.String, int))"/>&ndash;&gt;-->
+<!--            <aop:after-returning method="afterReturnMethod" pointcut-ref="pointcut1" returning="returnValue" />-->
+<!--            <aop:after-throwing method="exceptionMethod" pointcut-ref="pointcut1" />-->
+<!--            <aop:after method="afterMethod" pointcut-ref="pointcut1" />-->
+<!--            <aop:around method="aroundMethod" pointcut-ref="pointcut1" />-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+
+    <!--开启spring对注解aop的⽀持-->
+    <aop:aspectj-autoproxy/>
 
 
 </beans>
