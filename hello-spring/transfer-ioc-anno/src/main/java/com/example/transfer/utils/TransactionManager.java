@@ -8,10 +8,10 @@ import java.sql.SQLException;
 /**
 * 事务管理器类：负责手动事务的开启、提交、回滚
  */
-@Component("transactionManager")
+//@Component("transactionManager")
 public class TransactionManager {
 
-    @Autowired
+//    @Autowired
     private ConnectionUtils connectionUtils;
 
     // 开启手动事务控制

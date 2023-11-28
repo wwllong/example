@@ -14,10 +14,10 @@ import java.lang.reflect.Proxy;
 /**
  * 代理对象工厂：生成代理对象的
  */
-@Component("proxyFactory")
+//@Component("proxyFactory")
 public class ProxyFactory {
 
-    @Autowired
+//    @Autowired
     private TransactionManager transactionManager;
 
     /**
