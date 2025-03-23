@@ -18,10 +18,10 @@
 </script>
 
 <style lang="less" scoped>
-	.demo{
-		background-color: pink;
-		.myStyle{
-			font-size: 40px;
-		}
-	}
+  .demo{
+    background-color: pink;
+    .myStyle{
+      font-size: 40px;
+    }
+  }
 </style>

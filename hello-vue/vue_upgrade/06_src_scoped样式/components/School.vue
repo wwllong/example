@@ -18,7 +18,7 @@
 </script>
 
 <style scoped>
-	.demo{
-		background-color: skyblue;
-	}
+  .demo{
+    background-color: skyblue;
+  }
 </style>
