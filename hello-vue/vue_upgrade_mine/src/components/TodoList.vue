@@ -1,7 +1,6 @@
 <template>
   <ul class="todo-main">
-    <TodoItem/>
-    <TodoItem/>
+    <TodoItem v-for="todo in todos" :key="todo.id" :todo="todo"/>
   </ul>
 </template>
 
@@ -11,7 +10,16 @@
   export default {
     name: 'TodoList',
     components: {TodoItem},
-    data
+    data() {
+      return {
+        todos: [
+          {id: '001', title: '抽烟', done: true},
+          {id: '002', title: '喝酒', done: false},
+          {id: '003', title: '烫头', done: true},
+          {id: '004', title: '开车', done: true},
+        ]
+      }
+    }
   }
 
 </script>
