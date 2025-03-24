@@ -1,13 +1,29 @@
 <template>
   <div class="todo-header">
+<!--		<input type="text" placeholder="请输入你的任务名称，按回车键确认" v-model="title" @keyup.enter="addTodo"/>-->
 		<input type="text" placeholder="请输入你的任务名称，按回车键确认" v-model="title" @keyup.enter="add"/>
 	</div>
 </template>
 
 <script>
+  import {nanoid} from "nanoid";
 
   export default {
-    name: 'TodoHeader'
+    name: 'TodoHeader',
+    props: ['addTodo'],
+    data() {
+      return {
+        title: ''
+      }
+    },
+    methods: {
+      add(e) {
+        if (!this.title.trim()) return;
+        const todoObj = {id: nanoid(), title: this.title, done: false}
+        this.addTodo(todoObj)
+        this.title = ''
+      }
+    }
   }
 
 </script>
