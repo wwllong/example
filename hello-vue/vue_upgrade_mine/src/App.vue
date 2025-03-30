@@ -3,8 +3,8 @@
 		<div class="todo-container">
 			<div class="todo-wrap">
 				<TodoHeader :addTodo="addTodo"/>
-				<TodoList :todos="todos"/>
-				<TodoFooter/>
+				<TodoList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
+				<TodoFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAllDoneTodo="clearAllDoneTodo"/>
 			</div>
 		</div>
 	</div>
@@ -31,6 +31,24 @@ export default {
   methods: {
     addTodo(todoObj) {
       this.todos.unshift(todoObj)
+    },
+    checkTodo(id) {
+      this.todos.forEach((todoObj) => {
+        if (todoObj.id === id) todoObj.done = !todoObj.done;
+      })
+    },
+    deleteTodo(id) {
+      this.todos = this.todos.filter((todoObj) => todoObj.id !== id);
+    },
+    checkAllTodo(done) {
+      this.todos.forEach((todoObj) => {
+        todoObj.done = done;
+      })
+    },
+    clearAllDoneTodo() {
+      if (confirm('确定删除吗？')) {
+        this.todos = this.todos.filter((todoObj) => !todoObj.done)
+      }
     }
   }
 }
