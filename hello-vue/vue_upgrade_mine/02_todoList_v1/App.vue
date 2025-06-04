@@ -34,7 +34,7 @@ export default {
     },
     checkTodo(id) {
       this.todos.forEach((todoObj) => {
-        if (todoObj.id === id) todoObj.done = !todoObj.done;
+        if (todoObj.id === id) todoObj.done  = !todoObj.done;
       })
     },
     deleteTodo(id) {
