@@ -10,17 +10,16 @@
 
   export default {
     name: 'TodoHeader',
-    props: ['addTodo'],
     data() {
       return {
         title: ''
       }
     },
     methods: {
-      add(e) {
+      add() {
         if (!this.title.trim()) return;
         const todoObj = {id: nanoid(), title: this.title, done: false}
-        this.addTodo(todoObj)
+        this.$emit('addTodo', todoObj)
         this.title = ''
       }
     }

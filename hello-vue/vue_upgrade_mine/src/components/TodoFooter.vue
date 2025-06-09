@@ -7,14 +7,14 @@
 		<span>
 			<span>已完成{{doneTotal}}</span> / 全部{{total}}
 		</span>
-		<button class="btn btn-danger" @click="clearAllDoneTodo()">清除已完成任务</button>
+		<button class="btn btn-danger" @click="clearAllDoneTodo">清除已完成任务</button>
 	</div>
 </template>
 
 <script>
   export default {
     name: 'TodoFooter',
-    props: ['todos', 'checkAllTodo', 'clearAllDoneTodo'],
+    props: ['todos'],
     computed: {
       total() {
         return this.todos.length;
@@ -29,16 +29,13 @@
           return this.doneTotal === this.total && this.total > 0
         },
         set(value) {
-          this.checkAllTodo(value);
+          this.$emit('checkAllTodo', value);
         }
       }
     },
     methods: {
-      checkAll(e) {
-        this.checkAllTodo(e.target.checked);
-      },
-      clearAllDone() {
-        this.clearAllDoneTodo()
+      clearAllDoneTodo() {
+        this.$emit('clearAllDoneTodo');
       }
     }
   }
