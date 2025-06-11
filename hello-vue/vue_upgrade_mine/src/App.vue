@@ -11,57 +11,59 @@
 </template>
 
 <script>
-import TodoHeader from './components/TodoHeader'
-import TodoList from './components/TodoList'
-import TodoFooter from './components/TodoFooter'
+  import pubsub from 'pubsub-js'
+  import TodoHeader from './components/TodoHeader'
+  import TodoList from './components/TodoList'
+  import TodoFooter from './components/TodoFooter'
 
-export default {
-  name: 'App',
-  components: {TodoHeader, TodoList, TodoFooter},
-  data() {
-    return {
-      todos: JSON.parse(localStorage.getItem("todos")) || []
-    }
-  },
-  methods: {
-    addTodo(todoObj) {
-      this.todos.unshift(todoObj)
-    },
-    checkTodo(id) {
-      this.todos.forEach((todoObj) => {
-        if (todoObj.id === id) todoObj.done = !todoObj.done;
-      })
-    },
-    deleteTodo(id) {
-      this.todos = this.todos.filter((todoObj) => todoObj.id !== id);
-    },
-    checkAllTodo(done) {
-      this.todos.forEach((todoObj) => {
-        todoObj.done = done;
-      })
-    },
-    clearAllDoneTodo() {
-      if (confirm('确定删除吗？')) {
-        this.todos = this.todos.filter((todoObj) => !todoObj.done)
+  export default {
+    name: 'App',
+    components: {TodoHeader, TodoList, TodoFooter},
+    data() {
+      return {
+        todos: JSON.parse(localStorage.getItem("todos")) || []
       }
-    }
-  },
-  watch: {
-    todos: {
-      deep: true,
-      handler(value) {
-        localStorage.setItem("todos", JSON.stringify(value))
+    },
+    methods: {
+      addTodo(todoObj) {
+        this.todos.unshift(todoObj)
+      },
+      checkTodo(id) {
+        this.todos.forEach((todoObj) => {
+          if (todoObj.id === id) todoObj.done = !todoObj.done;
+        })
+      },
+      deleteTodo(_, id) {
+        this.todos = this.todos.filter((todoObj) => todoObj.id !== id);
+      },
+      checkAllTodo(done) {
+        this.todos.forEach((todoObj) => {
+          todoObj.done = done;
+        })
+      },
+      clearAllDoneTodo() {
+        if (confirm('确定删除吗？')) {
+          this.todos = this.todos.filter((todoObj) => !todoObj.done)
+        }
       }
+    },
+    watch: {
+      todos: {
+        deep: true,
+        handler(value) {
+          localStorage.setItem("todos", JSON.stringify(value))
+        }
+      }
+    },
+    mounted() {
+      this.$bus.$on('checkTodo', this.checkTodo)
+      this.pubId = pubsub.subscribe('deleteTodo', this.deleteTodo);
+    },
+    beforeDestroy() {
+      this.$bus.$off(['checkTodo'])
+      pubsub.unsubscribe(this.pubId);
     }
-  },
-  mounted() {
-    this.$bus.$on('checkTodo', this.checkTodo)
-    this.$bus.$on('deleteTodo', this.deleteTodo)
-  },
-  beforeDestroy() {
-    this.$bus.$off(['checkTodo', 'deleteTodo'])
   }
-}
 </script>
 
 <style>
